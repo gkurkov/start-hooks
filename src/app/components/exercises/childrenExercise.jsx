@@ -1,6 +1,17 @@
 import React from 'react'
 import CollapseWrapper from '../common/collapse'
 const ChildrenExercise = () => {
+    const ParentComponent = ({ children }) => {
+        return React.Children.map(children, (child, i) => {
+            const key = i + 1
+            return (
+                <div>
+                    {key}
+                    {child}
+                </div>
+            )
+        })
+    }
     return (
         <CollapseWrapper title="Упражнение">
             <p className="mt-3">
@@ -10,10 +21,11 @@ const ChildrenExercise = () => {
                 <code>React.Children.map</code> так и{' '}
                 <code>React.Children.toArray</code>
             </p>
-
-            <Component />
-            <Component />
-            <Component />
+            <ParentComponent>
+                <Component />
+                <Component />
+                <Component />
+            </ParentComponent>
         </CollapseWrapper>
     )
 }
